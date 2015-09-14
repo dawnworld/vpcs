@@ -117,6 +117,13 @@ int help_ip(int argc, char **argv)
 		return 1;
 	}
 
+    if (argc == 3 && !strncmp(argv[1], "igmp", strlen(argv[1])) &&
+            (!strcmp(argv[2], "?") ||!strncmp(argv[2], "help", strlen(argv[2])))) {
+        esc_prn("\n{Hip igmp} {Ujoin/leave} {Ugroup addr}\n"
+                " Sets to Join/Leave a group address\n");
+        return -1;
+    }
+
 	esc_prn("\n{Hip} {UARG} ... [{UOPTION}]\n"
 		"  Configure the current VPC's IP settings\n"
 		"    ARG ...:\n"
@@ -142,13 +149,6 @@ int help_ip(int argc, char **argv)
 		"    {Hdomain} {UNAME}    Set local domain name to {UNAME}\n");
 
 	return 1;
-}
-
-int help_igmp(int argc, char **argv)
-{
-    esc_prn("\n{Higmp} {Ujoin/leave} {Uip}\n"
-            "Join/Leave a multicasting\n");
-    return 1;
 }
 
 int help_load(int argc, char **argv)
