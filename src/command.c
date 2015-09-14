@@ -834,6 +834,12 @@ static int run_dhcp_release(int dump)
 	return 0;
 }
 
+static int run_igmp(int argc, char **argv)
+{
+    printf(" run igmp, argc:%d\n", argc);
+    return 0;
+}
+
 int run_ipconfig(int argc, char **argv)
 {
 	char buf[MAX_LEN];
@@ -973,6 +979,10 @@ int run_ipconfig(int argc, char **argv)
 	if (!strncmp("dns6", argv[1], strlen(argv[1]))) {
 		return run_ipdns6(argc, argv);
 	}
+
+    if(!strncmp("igmp", argv[1], strlen(argv[1]))) {
+        return run_igmp(argc, argv);        
+    }
 	
 	rip = inet_addr(argv[1]);
 	hasgip = gip = 0;
