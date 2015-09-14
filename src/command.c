@@ -842,7 +842,7 @@ static int run_igmp(int argc, char **argv)
     char ipstr[64];
 
     if(argc < 4 || (argc == 3 && (argv[2][0] == '?'))) {
-        help_igmp(argc, argv);
+        help_ip(argc, argv);
     }
     return 0;
 }
