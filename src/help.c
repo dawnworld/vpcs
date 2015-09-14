@@ -138,10 +138,17 @@ int help_ip(int argc, char **argv)
 		"    {Hdns} {Uip}         Set DNS server {Uip}, delete if {Uip} is '0'\n"
 		"    {Hdns6} {Uipv6}      Set DNS server {Uipv6}, delete if {Uipv6} is '0'\n"
 		"    {Higmp} {Ujoin/leave} {Uip}\n"
-        "                    Set VPC join/leave multicasting\n"
+        "                   Set VPC join/leave multicasting\n"
 		"    {Hdomain} {UNAME}    Set local domain name to {UNAME}\n");
 
 	return 1;
+}
+
+int help_igmp(int argc, char **argv)
+{
+    esc_prn("\n{Higmp} {Ujoin/leave} {Uip}\n"
+            "Join/Leave a multicasting\n");
+    return 1;
 }
 
 int help_load(int argc, char **argv)

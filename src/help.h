@@ -33,6 +33,7 @@ int help_clear(int argc, char **argv);
 int help_echo(int argc, char **argv);
 int help_help(int argc, char **argv);
 int help_hist(int argc, char **argv);
+int help_igmp(int argc, char **argv);
 int help_ip(int argc, char **argv);
 int help_load(int argc, char **argv);
 int help_neighbor(int argc, char **argv);

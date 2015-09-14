@@ -836,7 +836,14 @@ static int run_dhcp_release(int dump)
 
 static int run_igmp(int argc, char **argv)
 {
-    printf(" run igmp, argc:%d\n", argc);
+    u_int gwip;
+    struct packet *m;
+    pcs *pc = &vpc[pcid];
+    char ipstr[64];
+
+    if(argc < 4 || (argc == 3 && (argv[2][0] == '?'))) {
+        help_igmp(argc, argv);
+    }
     return 0;
 }
 
