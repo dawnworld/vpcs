@@ -137,6 +137,7 @@ int help_ip(int argc, char **argv)
 		"          {H-x}         Release DHCP lease\n"
 		"    {Hdns} {Uip}         Set DNS server {Uip}, delete if {Uip} is '0'\n"
 		"    {Hdns6} {Uipv6}      Set DNS server {Uipv6}, delete if {Uipv6} is '0'\n"
+		"    {Higmp} {Ujoin/leave} {Uip}\n"
 		"    {Hdomain} {UNAME}    Set local domain name to {UNAME}\n");
 
 	return 1;
