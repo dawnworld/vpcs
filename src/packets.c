@@ -548,12 +548,9 @@ struct packet *packet(pcs *pc)
         igmp->type = 0x16;
         igmp->max_resp_time = 0xff;
         igmp->chksum = 0;
-        igmp->group_addr = ntohl(0xe1000001); 
+        igmp->group_addr = sesscb->dip;
 
         igmp->chksum = cksum((unsigned short *)(igmp), hdr_len + dlen - sizeof(iphdr));
-
-        u_char sample_mac[6] = {0x01, 0x00, 0x5e, 0x00, 0x00, 0x01};
-        memcpy(sesscb->dmac, sample_mac, sizeof(sample_mac) / sizeof(u_char));
     }
 	
 	encap_ehead(m->data, sesscb->smac, sesscb->dmac, ETHERTYPE_IP);

@@ -839,7 +839,8 @@ static int run_igmp(int argc, char **argv)
     u_int gwip;
     struct packet *m, *p;
     pcs *pc = &vpc[pcid];
-    char ipstr[64];
+    u_int dmac_mask;
+    char dmac[6] = {0x01, 0x00, 0x5e, 0x00, 0x00, 0x00};
 
     if(argc < 4 || (argc == 3 && (argv[2][0] == '?'))) {
         help_ip(argc, argv);
@@ -850,6 +851,12 @@ static int run_igmp(int argc, char **argv)
     pc->mscb.proto = IPPROTO_IGMP;
 	pc->mscb.sip = pc->ip4.ip;
     pc->mscb.dip = inet_addr(argv[3]);
+
+    dmac_mask = ntohl(pc->mscb.dip) & 0x7fffff;
+    dmac[3] = dmac_mask >> 16;
+    dmac[4] = (dmac_mask >> 8) & 0xff;
+    dmac[5] = dmac_mask & 0xff;
+    memcpy(pc->mscb.dmac, dmac, sizeof(pc->mscb.dmac));
 
     m = packet(pc);
     if(NULL == m) {
