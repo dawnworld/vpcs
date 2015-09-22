@@ -837,13 +837,28 @@ static int run_dhcp_release(int dump)
 static int run_igmp(int argc, char **argv)
 {
     u_int gwip;
-    struct packet *m;
+    struct packet *m, *p;
     pcs *pc = &vpc[pcid];
     char ipstr[64];
 
     if(argc < 4 || (argc == 3 && (argv[2][0] == '?'))) {
         help_ip(argc, argv);
+        return 0;
     }
+
+    pc->mscb.proto = IPPROTO_IGMP;
+
+    m = packet(pc);
+    if(NULL == m) {
+        printf("out of memory\n");
+        return 0;
+    }
+
+    /* clean input queue */
+    while((p = deq(&pc->iq)) != NULL)
+        del_pkt(p);
+
+    enq(&pc->oq, m);
     return 0;
 }
 

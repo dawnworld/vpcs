@@ -83,6 +83,14 @@ struct iphdr {
 };
 typedef struct iphdr iphdr;
 
+struct igmphdr {
+    u_char  type;
+    u_char  max_resp_time;
+    u_short chksum;
+    u_int   group_addr;
+};
+typedef struct igmphdr igmphdr;
+
 #ifndef IPPROTO_ICMP
 #define IPPROTO_ICMP 1
 #endif
