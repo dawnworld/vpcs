@@ -847,6 +847,17 @@ static int run_igmp(int argc, char **argv)
         return 0;
     }
 
+    if(!strncmp("join", argv[2], strlen("join"))) {
+        pc->mscb.igmptype = IGMP_REPORT;
+    }
+    else if(!strncmp("leave", argv[2], strlen("leave"))) {
+        pc->mscb.igmptype = IGMP_LEAVE;
+    }
+    else {
+        help_ip(argc, argv);
+        return 0;
+    }
+
 	memcpy(pc->mscb.smac, pc->ip4.mac, 6);
     pc->mscb.proto = IPPROTO_IGMP;
 	pc->mscb.sip = pc->ip4.ip;

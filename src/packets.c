@@ -545,7 +545,7 @@ struct packet *packet(pcs *pc)
 		bcopy(b, ((struct ipovly *)ip)->ih_x1, 9);
 	} else if (sesscb->proto == IPPROTO_IGMP) {
         igmphdr *igmp = (igmphdr *)(ip + 1);
-        igmp->type = 0x16;
+        igmp->type = sesscb->igmptype;
         igmp->max_resp_time = 0xff;
         igmp->chksum = 0;
         igmp->group_addr = sesscb->dip;

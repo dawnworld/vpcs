@@ -119,6 +119,11 @@ typedef struct igmphdr igmphdr;
 #define ICMP_REDIRECT_NET 0
 #endif
 
+#ifndef IGMP_REPORT
+#define IGMP_REPORT 0x16
+#define IGMP_LEAVE  0x17
+#endif
+
 struct icmphdr 
 { 
 	u_char type;		/* echo or echo reply */
@@ -494,6 +499,7 @@ typedef struct sesscb {
 	int aproto;
 	u_char icmptype;
 	u_char icmpcode;
+    u_char igmptype;
 	int mtu;
 	int frag;
 	char *data;
