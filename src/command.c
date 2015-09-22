@@ -846,7 +846,10 @@ static int run_igmp(int argc, char **argv)
         return 0;
     }
 
+	memcpy(pc->mscb.smac, pc->ip4.mac, 6);
     pc->mscb.proto = IPPROTO_IGMP;
+	pc->mscb.sip = pc->ip4.ip;
+    pc->mscb.dip = inet_addr(argv[3]);
 
     m = packet(pc);
     if(NULL == m) {
